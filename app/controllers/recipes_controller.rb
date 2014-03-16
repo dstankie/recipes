@@ -70,7 +70,7 @@ class RecipesController < ApplicationController
         end
 
         r.name = params[:name]
-        r.cook_time = params[:cook_time]*60
+        r.cook_time = params[:cook_time]
         if params[:directions]
           r.directions = params[:directions]
         else
@@ -203,7 +203,7 @@ class RecipesController < ApplicationController
 
       r = Recipe.new
       r.name = params[:name]
-      r.cook_time = params[:cook_time]*60
+      r.cook_time = params[:cook_time]
       if params[:directions]
         r.directions = params[:directions]
       else

@@ -77,7 +77,7 @@
 
 	<div class='row'>
 		<label class="control-label col-sm-1"></label>
-	<% if @recipe.ext_url%>
+	<% if @recipe.ext_url.length > 0 %>
 		<div class="form-group">
 			<button class="btn btn-info" type="button button-control" onclick="window.open('<%=@recipe.ext_url%>')">Show Directions on External Site</button>	
 	    </div>
