@@ -3,30 +3,41 @@
 <h1 class="page-header">Ingredients <%= @username %></h1>
 
 
-<row>
-<%= link_to "Create a new Ingredient", "/ingredients/new"%>
-
-<label>or Select a few and search for a recipe </label>
-</row>
+<div class="row">
+	<div class="col-lg-10">
+		<label> <%= link_to "Create a new Ingredient", "/ingredients/new"%> or Select a few and search for a recipe </label>
+	</div>
+</div>
 
 <fieldset>
+
 <%= form_tag "/recipes/search" do %>
-	<%= submit_tag "Submit" %>
-	<% @gr.each do |cat,ingrs| %>
+
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+			<%= submit_tag "Submit", class: "btn btn-primary" %>
+		</div>
+	  </div>
+	</div>
+
+	<% @gr.sort.each do |cat,ingrs| %>
 
 		<h3><p><%= cat %></p></h3>
 			<ul class='list-inline'>
 			<% ingrs.each do |g| %>  
-				    	<li>
-				    	<label type="button" class="btn btn-success" data-toggle="buttons">
-				    		<%= check_box_tag  "ingredgients_checkbox[]",g.name %><%= g.name %>
-						</label>
-						</li>
+				    	<li><%= check_box_tag  "ingredgients_checkbox[]",g.name %><%= g.name %></li>
 	  		<% end %>
 	  		</ul>
 		<hr>
 	<% end %>
-	<%= submit_tag "Submit" %>
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+			<%= submit_tag "Submit", class: "btn btn-primary" %>
+		</div>
+	  </div>
+	</div>
 <% end %>
 </fieldset>
 </div>

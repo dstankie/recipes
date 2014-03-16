@@ -1,7 +1,14 @@
 <div class='well bs-component'>
 <h1>What do you have in your fridge?</h1>
 <%= form_tag "/fridges" do %>
-
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= submit_tag "Add Ingredients", class: "btn btn-primary" %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+    </div>
 	<% @gr.each do |cat,ingrs| %>
 
 		<h3><p><%= cat %></p></h3>
@@ -15,7 +22,14 @@
 	  		</ul>
 		<hr>
 	<% end %>
-	<%= submit_tag "Submit" %>
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= submit_tag "Add Ingredients", class: "btn btn-primary" %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+    </div>
 <% end %>
 </div>
 

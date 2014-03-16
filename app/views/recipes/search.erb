@@ -61,11 +61,10 @@
 
 
 
-    <div class="row">
+    <div class="row row-fluid">
       <label for="Name" class="col-lg-2 control-label">Matches by Recipe Name </label>
       <div class="col-lg-10">
  		<% if @recipe_matches %>
-			
 			<% @recipe_matches.each do |x| %>
 				<div class="col-lg-3 thumbnail">
 					<%= link_to image_tag(x.image_url), "/recipes/#{x.id}", :class=>"image-responsive"%>

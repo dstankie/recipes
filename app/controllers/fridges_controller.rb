@@ -16,7 +16,8 @@ class FridgesController < ApplicationController
     end
 
     def index
-    	@frs = User.find(1).ingredients
+        @user = User.find(session[:user_id])
+    	@frs = User.find(@user.id).ingredients
     end
 
     def new
@@ -28,13 +29,13 @@ class FridgesController < ApplicationController
     end
 
     def show
-    	@fridge = User.find(session["user_id"]).ingredients
+    	@fridge = User.find(session[:user_id]).ingredients
     end
 
     def edit
         #cats = Ingredient.uniq.pluck('category')
-        @fridge = User.find(1).ingredients
-        @everythingelse = Ingredient.all - @fridge
+        @fridge = User.find(session[:user_id]).ingredients
+        @everythingelse = Ingredient.all.order('name asc') - @fridge
     end
 
     def create

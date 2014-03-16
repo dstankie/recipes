@@ -2,7 +2,7 @@ require 'open-uri'
 require 'json'
 
 
-recipe_files = ["breakfast.json","appetizers.json"]
+recipe_files = ["entrees.json"]
 ingredients_hash = []
 
 recipe_files.each do |rf|

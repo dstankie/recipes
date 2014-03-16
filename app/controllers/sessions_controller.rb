@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
         session[:user_id] = user.id
         redirect_to :root, notice: "You are logged in"
       else
-        redirect_to :back, notice: "Bad Password"
+        redirect_to :back, notice: "The password was incorrect"
       end
     else
        redirect_to :back, notice: "Unknown Email Address"

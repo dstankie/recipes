@@ -1,6 +1,7 @@
 # require 'open-uri'
 # require 'json'
 
+
 User.destroy_all
 Fridge.destroy_all
 Ingredient.destroy_all
@@ -27,7 +28,7 @@ Course.destroy_all
 #Unfortunately there was not an easy way to find recipes in bulk
 #in a usable format that also included the recipe directions as well.
 #I've plucked the links yummply provides to external sites
-recipe_files = ["breakfast.json","appetizers.json"]
+recipe_files = ["breakfast.json","appetizers.json","entrees.json"]
 
 recipe_files.each do |rf|
 	recipe_file = Rails.root.join('db', rf).to_s
@@ -35,11 +36,15 @@ recipe_files.each do |rf|
 
 	recipe_hashes.each do |recipe_hash|
 		if recipe_hash
-
 			b = Recipe.new
 			b.name = recipe_hash['recipeName']
 			b.ext_url = "http://www.yummly.com/recipe/external/"+recipe_hash['id']
-			b.cook_time = recipe_hash['totalTimeInSeconds']
+			if recipe_hash['totalTimeInSeconds']
+				b.cook_time = recipe_hash['totalTimeInSeconds']
+			else
+				b.cook_time = 999
+			end
+			b.directions = recipe_hash['directions']
 
 			image = recipe_hash['imageUrlsBySize']['90'].split('=')[0]+"=s1200-c"
 			b.image_url = image
@@ -50,9 +55,7 @@ recipe_files.each do |rf|
 				p = Ingredient.find_by(:name => x)
 				Usedin.create(:recipe_id => b.id, :ingredient_id => p.id)
 			end
-
 			rcourses = recipe_hash['attributes']['course']
-
 			if rcourses
 				rcourses.each do |x|
 					Course.create(:recipe_id => b.id, :name => x)
@@ -60,7 +63,7 @@ recipe_files.each do |rf|
 			else
 				Course.create(:recipe_id => b.id, :name => "Other")
 			end
+
 		end
 	end
 end
-

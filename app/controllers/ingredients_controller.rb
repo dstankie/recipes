@@ -23,8 +23,11 @@ class IngredientsController < ApplicationController
     	cats = Ingredient.uniq.pluck('category')
     	@gr = Hash.new
     	cats.each do |cat|
-    		@gr[cat] = Ingredient.where(["category='"+cat+"'"]).order("name asc")
+            if cat.length > 0
+    		  @gr[cat] = Ingredient.where(["category='"+cat+"'"]).order("name asc")
+            end
     	end
+        puts @gr
     end
 
   	def show

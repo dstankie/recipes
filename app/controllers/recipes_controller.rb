@@ -35,9 +35,9 @@ class RecipesController < ApplicationController
         @shopping = @recipe.ingredients
       end
 
-      uid = session[:user_id]
-      @user = User.find(uid)
-      if not uid.blank?
+      if not session[:user_id].blank?
+        uid = session[:user_id]
+        @user = User.find(uid)
         ingrs = @user.ingredients
         @shopping = @shopping - ingrs
       end

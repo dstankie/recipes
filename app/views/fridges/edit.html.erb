@@ -1,9 +1,19 @@
+<div class='well bs-component'>
+<legend><h1>Edit your Inventory</h1></legend>
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= submit_tag "Submit", class: "btn btn-primary" %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+    </div>
 <%= form_tag "/fridges", :method => 'patch' do %>
 	<h2>Remove items from your inventory</h2>
-	<%= submit_tag "Submit" %>
+
 	<% @fridge.each do |g| %>
 				<div class="row">
-				  <div class="col-lg-6">
+				  <div class="col-lg-2">
 				    <div class="input-group">
 				    	<%= check_box_tag  "delete_checkbox[]",g.id %>
 						<%= label_tag(g.id, g.name ) %>
@@ -11,29 +21,37 @@
 				  </div><!-- /.col-lg-6 -->
 				</div><!-- /.row -->
 	<% end %>
-	<%= check_box_tag  "clearinventory_checkbox"%>
-	<%= label_tag("Delete everything from your inventory") %>
 
 	<hr>
 	<h2>Add items to your inventory</h2>
-	
-	<% @everythingelse.each do |g| %>
-				<div class="row">
-				  <div class="col-lg-6">
-				    <div class="input-group">
-				    	<%= check_box_tag  "add_checkbox[]",g.id %>
-						<%= label_tag(g.id, g.name ) %>
-				    </div><!-- /input-group -->
-				  </div><!-- /.col-lg-6 -->
-				</div><!-- /.row -->
+	<% chunks = @everythingelse.each_slice(@everythingelse.count / 4).to_a %>
+	<div class="row">
+	<% chunks.each do |chunk|%>
+					
+					  <div class="col-sm-3">	
+		<% chunk.each do |g| %>
+
+					    <div class="input-group">
+					    	<%= check_box_tag  "add_checkbox[]",g.id %>
+							<%= label_tag(g.id, g.name ) %>
+					    </div><!-- /input-group -->
+
+		<% end %>
+							  </div><!-- /.col-lg-6 -->
 	<% end %>
 
-
-	<%= submit_tag "Submit" %>
+	<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= submit_tag "Submit", class: "btn btn-primary" %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+    </div>
 
 <% end %>
 
-
+</div>
 
 
 

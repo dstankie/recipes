@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+    @user = User.find(session[:user_id])
     @fr = Fridge.find_by(:user_id => @user.id)
     @ingredients = @user.ingredients
   end
