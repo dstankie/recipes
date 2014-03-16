@@ -34,6 +34,15 @@ class RecipesController < ApplicationController
       else
         @shopping = @recipe.ingredients
       end
+
+      uid = session[:user_id]
+      @user = User.find(uid)
+      if not uid.blank?
+        ingrs = @user.ingredients
+        @shopping = @shopping - ingrs
+      end
+
+
     end
 
     def update()
