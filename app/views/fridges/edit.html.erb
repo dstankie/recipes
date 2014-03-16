@@ -1,5 +1,7 @@
 <div class='well bs-component'>
 <legend><h1>Edit your Inventory</h1></legend>
+
+<%= form_tag "/fridges", :method => 'patch' do %>
 	<div class="row">
       <div class="form-group">
         <div class="col-lg-10">
@@ -8,7 +10,6 @@
         </div>
       </div>
     </div>
-<%= form_tag "/fridges", :method => 'patch' do %>
 	<h2>Remove items from your inventory</h2>
 
 	<% @fridge.each do |g| %>
