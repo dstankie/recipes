@@ -29,7 +29,14 @@
 
 	<fieldset>
 	<%= form_tag "/recipes/search" do %>
-		<%= submit_tag "What can I make?" %>
+		<div class="row">
+      <div class="form-group">
+        <div class="col-lg-10">
+          <%= submit_tag "What can I make?", class: "btn btn-primary" %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+    </div>
 				<div hidden>
 				
 				<% @ingredients.each do |g| %>  
@@ -44,7 +51,7 @@
     <div class="row">
    	<label class="control-label col-lg-10"></label>
       <div class="col-lg-7">
-			You haven't selected any ingredients yet.  <%= link_to "Add some items to your inventory!", new_fridge_path %>
+			You haven't selected any ingredients yet.  To do a custom search <%= link_to "add some items to your inventory!", new_fridge_path %>
 	  </div>
 	</div>
 
