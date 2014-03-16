@@ -1,0 +1,11 @@
+<h1 class="page-header">Ingredients <%= @username %></h1>
+
+<h2></h2>
+<% @frs.each do |ingr| %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= link_to ingr.name , ingredient_path(ingr.id)%>
+    </div>
+  </div>
+
+<% end %>

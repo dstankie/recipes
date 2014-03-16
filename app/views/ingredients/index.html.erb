@@ -1,0 +1,39 @@
+<div class='well bs-component'>
+
+<h1 class="page-header">Ingredients <%= @username %></h1>
+
+
+<row>
+<%= link_to "Create a new Ingredient", "/ingredients/new"%>
+
+<label>or Select a few and search for a recipe </label>
+</row>
+
+<fieldset>
+<%= form_tag "/recipes/search" do %>
+	<%= submit_tag "Submit" %>
+	<% @gr.each do |cat,ingrs| %>
+
+		<h3><p><%= cat %></p></h3>
+			<ul class='list-inline'>
+			<% ingrs.each do |g| %>  
+				    	<li>
+				    	<label type="button" class="btn btn-success" data-toggle="buttons">
+				    		<%= check_box_tag  "ingredgients_checkbox[]",g.name %><%= g.name %>
+						</label>
+						</li>
+	  		<% end %>
+	  		</ul>
+		<hr>
+	<% end %>
+	<%= submit_tag "Submit" %>
+<% end %>
+</fieldset>
+</div>
+
+</row>
+
+
+
+</div>
+

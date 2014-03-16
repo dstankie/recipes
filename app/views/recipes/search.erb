@@ -1,0 +1,110 @@
+<div class='well bs-component'>
+
+    <legend><h1>Search</h1></legend>
+    
+    <div class="row">
+   	<label class="control-label col-lg-2"></label>
+      <div class="col-lg-7">
+      	<%= form_tag "/recipes/search", class: "form-horizontal" do %>
+		  <fieldset>
+			<div class="form-group">
+			  <div class="input-group">
+			    <span class="input-group-btn">
+			      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></button>
+			      <%= text_field_tag :query , @query, class: "form-control"%>
+			    </span>
+			  </div>
+			</div>
+		  </fieldset>
+		<% end %>
+	  </div>
+	</div>
+
+	<div class='row'>
+		<label class="control-label col-lg-3"></label>
+		<div class="form-group">
+			<%= link_to "Create a new Recipe", "/recipes/new"%> / <%= link_to "Create a new Ingredient", "/recipes/new"%>
+		</div>
+	</div>
+
+
+	<% if @ingredients_matches %>
+	    <div class="row">
+	      <label for="Name" class="col-lg-2 control-label"></label>
+	      <div class="col-lg-10">
+	      		<label for="Name" class="col-lg-2 control-label">Found ingredients:</label>
+					<% @ingredients_matches.each do |x| %>
+	  						<%= link_to x.name, "/ingredients/#{x.id}"%>
+					<% end %>
+				<label> </label>
+		  </div>
+	    </div>
+	<% end %>
+
+	<% if @ingredients_not_found %>
+	    <div class="row">
+	      <label for="Name" class="col-lg-2 control-label"></label>
+	      <div class="col-lg-10">
+				  <% @ingredients_not_found.each do |x| %>
+				  <label for="Name" class="col-lg-2 control-label">Possible Matches</label>
+				    "<%= x %>"
+				    <% @ingredients_like[x].each do |y| %>
+				      <%= link_to y.name, "/ingredients/#{y.id}"%>
+				    <%end%>
+				   	<br>
+				  <% end %>
+				<label> </label>
+		  </div>
+	    </div>
+	<% end %>
+
+
+
+
+    <div class="row">
+      <label for="Name" class="col-lg-2 control-label">Matches by Recipe Name </label>
+      <div class="col-lg-10">
+ 		<% if @recipe_matches %>
+			
+			<% @recipe_matches.each do |x| %>
+				<div class="col-lg-3 thumbnail">
+					<%= link_to image_tag(x.image_url), "/recipes/#{x.id}", :class=>"image-responsive"%>
+					<div class="caption post-content">
+	                <h3><%=x.name%></h3>
+	                <label></label>
+	               	</div>
+				</div>
+		
+			<% end %>
+		<% else %>
+
+	
+
+		<% end %>
+	   </div>
+    </div>
+
+    <div class="row">
+      <label for="Name" class="col-lg-2 control-label">Matches By Ingredient</label>
+      <div class="col-lg-10">
+		<% if @recipe_fuzzy_ingredients.count > 0 %>
+			<% @recipe_fuzzy_ingredients.each do |r| %>
+				<div class="col-lg-3 thumbnail">
+					<% x = Recipe.find(r[0]) %>
+					<%= link_to image_tag(x.image_url), "/recipes/#{x.id}", :class=>"image-responsive"%>
+					<div class="caption post-content">
+	                <label><%=x.name%></label>
+	                <label><%=r[1].count%> of <%= x.ingredients.count %> ingredients</label>
+	               	</div>
+				</div>
+		
+			<% end %>
+
+		<% else %>
+
+
+
+		<% end %>
+		</div>
+    </div>
+</div>

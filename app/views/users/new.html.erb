@@ -1,0 +1,38 @@
+<div class='well bs-component'>
+
+<%= form_tag "/users", :class=>'form-horizontal', :id=> 'recipeform' do %>
+  <fieldset>
+    <legend><h1>Sign Up</h1></legend>
+
+    <div class="form-group">
+      <label for="Name" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :name, nil, class: "form-control", required: "" %>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="Email" class="col-lg-2 control-label">Email</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :email, nil, class: "form-control", required: "" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Password" class="col-lg-2 control-label">Password</label>
+      <div class="col-lg-5">
+        <%= password_field_tag :password, nil, class: "form-control", required: "" %>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <%= submit_tag "Sign Up", class: "btn btn-primary"  %>
+        </div>
+      </div>
+
+  </fieldset>
+<% end %>
+
+</div>

@@ -1,0 +1,44 @@
+// Place all the styles related to the recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//Show page of individual recipes
+
+.recipe-show-recipe-ingredients{
+	width:38%;
+    display: inline-block;
+    height: auto;
+    padding-left: 3%
+}
+
+.recipe-show-ext-button{
+	background: darkblue;
+	padding: 2%;
+	width: 100%;
+}
+
+.recipe-show-image-resize{
+    width:auto;
+    height:auto;
+
+
+    
+}
+
+.recipe-show-top-section{
+	position: relative;
+	left: 0;
+	background: gray;
+}
+
+.no-directions{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: black;
+	width: 30%;
+	max-height: auto;
+	vertical-align: bottom;
+	horizontal-align: right;
+	padding: 1%;
+}

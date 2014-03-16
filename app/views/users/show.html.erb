@@ -1,0 +1,56 @@
+<div class='well bs-component'>
+
+
+	<div class="col-lg-10">
+		<%= link_to "Create a new Recipe", "/recipes/new"%>
+	</div>
+	<div class="col-lg-10">
+		<%= link_to "Create a new Ingredient", "/ingredients/new"%>
+	</div>
+
+	<% if @fr != nil %>
+
+    <div class="row">
+   	<label class="control-label col-lg-10"></label>
+      <div class="col-lg-7">
+			<%= link_to "Edit the items in your inventory", edit_fridge_path %>
+	  </div>
+	</div>
+
+    <div class="row">
+   	<label class="control-label col-lg-10"></label>
+      <div class="col-lg-7">
+			<%= link_to "View the items in your inventory", fridge_path %>
+	  </div>
+	</div>
+
+
+	<br>
+
+	<fieldset>
+	<%= form_tag "/recipes/search" do %>
+		<%= submit_tag "What can I make?" %>
+				<div hidden>
+				
+				<% @ingredients.each do |g| %>  
+					<%= check_box_tag  "ingredgients_checkbox[]",g.name, checked="true" %><%= g.name %>
+		  		<% end %>
+		  		</div>
+	<% end %>
+	</fieldset>
+
+	<% else %>
+
+    <div class="row">
+   	<label class="control-label col-lg-10"></label>
+      <div class="col-lg-7">
+			You haven't selected any ingredients yet.  <%= link_to "Add some items to your inventory!", new_fridge_path %>
+	  </div>
+	</div>
+
+	<% end %>
+
+</div>
+
+
+</div>

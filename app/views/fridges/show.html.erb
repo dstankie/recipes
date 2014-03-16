@@ -1,0 +1,9 @@
+<h2>Here's what you have available:</h2>
+
+<% @fridge.each do |ingr| %>
+<div class="container">
+	<div class="col-md-3">
+		<h4><%= link_to ingr.name, ingredient_path(ingr.id) %></h4>
+	</div>
+</div>
+<% end %>

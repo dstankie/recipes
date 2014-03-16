@@ -1,0 +1,29 @@
+<div class='well bs-component'>
+<%= form_tag "/ingredients", :class=>'form-horizontal' do %>
+  <fieldset>
+    <legend><h1>Add an ingredient</h1></legend>
+
+    <div class="form-group">
+      <label for="Name" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :name, nil, class: "form-control", required: "" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Name" class="col-lg-2 control-label">Category</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :category, nil, class: "form-control", required: "" %>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <%= submit_tag "Create", class: "btn btn-primary"  %>
+        </div>
+      </div>
+
+  </fieldset>
+<% end %>
+
+</div>

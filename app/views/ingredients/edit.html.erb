@@ -1,0 +1,33 @@
+<div class='well bs-component'>
+<%= form_tag "/ingredients/#{@ingredient.id}", :class=>'form-horizontal', :id=> 'recipeform', :method => 'patch' do %>
+  <fieldset>
+    <legend><h1>Edit the Ingredient</h1></legend>
+
+
+    <div class="form-group">
+      <label for="Name" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :name, nil, class: "form-control", required: "" , value: @ingredient.name %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ext_url" class="col-lg-2 control-label">Category</label>
+      <div class="col-lg-5">
+        <!-- <input type="text" class="form-control" id="ext_url" placeholder="http://some.site.com/apple_pie"> -->
+        <%= text_field_tag :category, nil, class: "form-control", value: @ingredient.category%>
+      </div>
+    </div>
+
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <%= submit_tag "Submit Changes", class: "btn btn-primary", id: @ingredient.id %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+
+  </fieldset>
+<% end %>
+
+</div>

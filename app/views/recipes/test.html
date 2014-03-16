@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello, Javascript</title>
+    <link rel="stylesheet" type="text/css" href="http://necolas.github.io/normalize.css/3.0.0/normalize.css">
+    <style>
+      body { width: 960px; margin: 40px auto; font-family: "Helvetica Neue"; }
+      code { font-weight: bold; padding: 0px 3px;}
+      h3 { border-top: solid 2px #CCC; padding-top: 24px; margin-top: 24px;}
+
+
+      #principles { margin-top: 96px; background-color: #fffbb0; padding: 12px; box-shadow: 6px 6px 6px #CCC; border: solid 1px #CCC;}
+
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+  </head>
+
+
+  <body>
+    <h1>jQuery Sandbox</h1>
+    <h3>Challenges</h3>
+    <p>1. Make an alert box appear as soon as this page loads.</p>
+    <p>2. Make an alert box appear when you click
+        <a href="" id="clickme">this link</a>.
+    </p>
+
+    <p id="toggleCommand">3. Click Here to Toggle The Snack List.</p>
+
+    <p class="more_snacks">4. Click here to add a snack.</p>
+    <p>5. <a class="stopme" href="http://www.google.com">Don't Allow Google Searches</a></p>
+
+    <h3>Snack List</h3>
+    <ul>
+      <li>Ice Cream</li>
+      <li>Cookies</li>
+      <li>M&amp;Ms</li>
+    </ul>
+
+
+    <div id="principles">
+      <h2>Principles &amp; Hints</h2>
+      <ol>
+        <li><code>alert("Hi");</code> will display a dialog box.</li>
+        <li>Order matters.</li>
+        <li>DOM traversal: <code>document.getElementsByTagName</code>, <code>document.getElementById</code>, etc.</li>
+        <li>DOM manipulation.</li>
+        <li>CSS manipulation. Example: <code>e.style.color = "red";</code></li>
+        <li>Default browser behaviors can be overridden.</li>
+        <li>There are two built-in variables: <code>document</code> and <code>window</code>.</li>
+        <li><code>console.log</code> in Javascript is like <code>puts</code> in Ruby.</li>
+      </ol>
+    </div>
+
+    <script>
+      $(".more_snacks").on("click", function() {
+        $("ul").append("<li>Popcorn</li>");
+      });
+
+      $(".stopme").on("click", function() {
+        alert("Nice Try!")
+        return false;
+      })
+
+      $("#clickme").on("click", function() {
+        alert("Wazzzzzup!");
+      });
+
+      $("#toggleCommand").on("click", function() {
+        // $("ul").slideToggle();
+        $("ul li").css("color", "green");
+      });
+    </script>
+
+
+      </body>
+</html>

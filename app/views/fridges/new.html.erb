@@ -1,0 +1,21 @@
+<div class='well bs-component'>
+<h1>What do you have in your fridge?</h1>
+<%= form_tag "/fridges" do %>
+
+	<% @gr.each do |cat,ingrs| %>
+
+		<h3><p><%= cat %></p></h3>
+			<ul class='list-inline'>
+			<% ingrs.each do |g| %>  
+				   	<li>
+				    	<%= check_box_tag  "ingredgients_checkbox[]",g.id %>
+						<%= label_tag(g.id, g.name ) %>
+					</li>
+	  		<% end %>
+	  		</ul>
+		<hr>
+	<% end %>
+	<%= submit_tag "Submit" %>
+<% end %>
+</div>
+

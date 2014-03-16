@@ -1,0 +1,132 @@
+<div class='well bs-component'>
+<%= form_tag "/recipes/#{@recipe.id}", :class=>'form-horizontal', :id=> 'recipeform', :method => 'patch' do %>
+  <fieldset>
+    <legend><h1>Edit a Recipe</h1></legend>
+
+
+    <div class="form-group">
+      <label for="Name" class="col-lg-2 control-label">Recipe Name</label>
+      <div class="col-lg-5">
+        <%= text_field_tag :name, nil, class: "form-control", required: "" , value: @recipe.name %>
+        <span class="help-block">Name your recipe (required)</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cook_time" class="col-lg-2 control-label">Cook time</label>
+      <div class="col-lg-1">
+        <%= number_field_tag :cook_time, nil, class: "form-control", value: @recipe.cook_time/60, in: 1...100000 %>
+        <span class="help-block">Enter the cook time in minutes (required)</span>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <label for="directions" class="col-lg-2 control-label">Directions</label>
+      <div class="col-lg-9">
+        <%= text_area_tag :directions, nil, class: "form-control", rows: "10", value: @recipe.directions %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="ext_url" class="col-lg-2 control-label">External URL</label>
+      <div class="col-lg-5">
+        <!-- <input type="text" class="form-control" id="ext_url" placeholder="http://some.site.com/apple_pie"> -->
+        <%= text_field_tag :ext_url, nil, class: "form-control", value: @recipe.ext_url%>
+        <span class="help-block">If you found this recipe on another website, we will link back to it with the URL you provide here.</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image_url" class="col-lg-2 control-label">Image URL</label>
+      <div class="col-lg-5">
+        <%= url_field_tag :image_url, nil, class: "form-control", required: "", value: @recipe.image_url %>
+        <span class="help-block">Enter an URL of an image to be displayed alongside your recipe (required)</span>
+      </div>
+    </div>
+
+    
+      
+
+      <div class="form-group">
+      <label for="image_url" class="col-lg-2 control-label">Deselect for Removal</label>
+      <div class="col-lg-10 col-lg-offset-2">
+      <ul class="list-inline">
+        <% @ingredients.each do |g| %>  
+          <li>
+            <div class="checkbox">
+              <label>
+                <%= check_box_tag  "del_ingredients_checkbox[]", g.id, checked: 'true' %><%= g.name %>
+              </label>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    </div>
+
+
+
+
+    <div class="form-group">
+      <label for="image_url" class="col-lg-2 control-label">Select for Addition</label>
+      <div class="col-lg-10 col-lg-offset-2">
+          <% @cats.each do |c| %>
+            <button type='button' class="btn btn-info btn-small" data-toggle="modal" href="#<%=c%>"><%=c%></button>
+          
+            <div class="modal" id="<%=c%>">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"><%=c%></h4>
+                  </div>
+                  <div class="modal-body">
+                      <ul class="list-inline">
+                      <% @grouped_ingredients[c].each do |g| %>  
+                          <% if (! @ingredient_ids.include? g.id) %>
+                          <li>
+                            <div class="checkbox">
+                              <label>
+                                  <%= check_box_tag  "ingredients_checkbox[]", g.id %><%= g.name %>
+                              </label>
+                            </div>
+                            </li>
+                          <% end %>
+                      <% end %>
+                      </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+      </div>
+    </div>
+
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <%= submit_tag "Submit Changes", class: "btn btn-primary", id: @recipe.id %>
+          <!-- <button type="submit" class="btn btn-primary" >Submit Changes</button> -->
+        </div>
+      </div>
+
+  </fieldset>
+<% end %>
+
+</div>
+
+<script>
+
+$("#recipeform").submit(function(){
+    var checked = $("#recipeform input:checked");
+    if (checked.length < 1){
+        alert("Make sure you didn't remove all the ingredients!");
+        return false;
+    }
+});
+
+</script>
